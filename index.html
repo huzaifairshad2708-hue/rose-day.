@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day Sweetheart 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1a001a, #330033);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 2.5em;
+    color: #ffb6c1;
+}
+
+#typing {
+    margin: 20px;
+    font-size: 1.2em;
+    min-height: 80px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff1f4c;
+}
+
+/* 🌹 Falling Roses */
+.rose {
+    position: fixed;
+    top: -10%;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* 💖 Surprise Box */
+.box {
+    display: none;
+    margin: 20px auto;
+    width: 80%;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* 📅 Calendar */
+#calendar span {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 10px;
+    border: 1px solid pink;
+    border-radius: 6px;
+    font-size: 13px;
+    background: rgba(255,182,193,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Rose Day 🌹 Sweetheart</h1>
+
+<div id="typing"></div>
+
+<button onclick="playMusic()">🎵 Play Music</button>
+<button onclick="showSurprise()">💌 Surprise</button>
+<button onclick="showCalendar()">📅 I choose you everyday</button>
+
+<!-- 💌 Surprise Message -->
+<div id="surpriseBox" class="box">
+    <p>
+        Mahwish ❤️<br><br>
+        This rose is not just a flower.<br>
+        It’s my heart, my patience, my effort.<br><br>
+        I may fail in words,<br>
+        but I never fail in choosing you.<br><br>
+        <b>I love you.</b><br>
+        — Your Sweetheart 🌸
+    </p>
+</div>
+
+<!-- 📅 Calendar Proof -->
+<div id="calendarBox" class="box">
+    <p>
+        <b>I’ll choose you everyday 💞</b><br><br>
+        This is my proof — not words, but dates.
+    </p>
+    <div id="calendar"></div>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="kaise_hua.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 💬 Typing Effect
+const text = "For you, Mahwish…\nI don’t promise perfection.\nI promise presence.\nI’ll choose you, every single day. ❤️";
+let i = 0;
+function typeText() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML +=
+            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeText, 60);
+    }
+}
+typeText();
+
+// 🎵 Music
+function playMusic() {
+    document.getElementById("bgMusic").play();
+}
+
+// 🌹 Falling Roses
+function createRose() {
+    const rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(rose);
+    setTimeout(() => rose.remove(), 8000);
+}
+setInterval(createRose, 400);
+
+// 💌 Surprise
+function showSurprise() {
+    document.getElementById("surpriseBox").style.display = "block";
+}
+
+// 📅 Calendar Proof
+function showCalendar() {
+    document.getElementById("calendarBox").style.display = "block";
+}
+
+// 🔁 CHANGE DATE HERE (when you started choosing her)
+const startDate = new Date("2024-01-01");
+const today = new Date();
+const calendarDiv = document.getElementById("calendar");
+
+let current = new Date(startDate);
+while (current <= today) {
+    let span = document.createElement("span");
+    span.innerText = current.toDateString();
+    calendarDiv.appendChild(span);
+    current.setDate(current.getDate() + 1);
+}
+</script>
+
+</body>
+</html>
